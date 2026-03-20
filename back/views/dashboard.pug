@@ -1,0 +1,78 @@
+doctype html
+html
+  head
+    title Dashboard
+    link(rel="stylesheet", href="../static/css/dashboard.css")
+  body
+    h1 Admin  Dashboard
+
+    h2 Add Product
+    form(action="/dashboard/addProduct" method="POST")
+      div
+        label Name
+        input(type="text" name="name" required)
+      div
+        label Price
+        input(type="number" name="price")
+      div
+        label Stock
+        input(type="number" name="stock" required)
+      button(type="submit") Add Product
+
+    h2 Products
+    table(border="1")
+      thead
+        tr
+          th Product 
+          th Price
+          th Stock
+          th Update
+          th Delete
+      tbody
+        if products 
+          each product in products
+            tr
+              td #{product.name}
+              td #{product.price} ❄️
+              td #{product.stock} 
+              td
+                form(action="/dashboard/updateProduct" method="POST")
+                  input(type="hidden" name="_method" value="PUT")
+                  input(type="hidden" name="id" value=product._id)
+                  input(type="text" name="name" value=product.name)
+                  input(type="number" name="price" value=product.price)
+                  input(type="number" name="stock" value=product.stock)
+                  button(type="submit") Update
+              td
+                form(action="/dashboard/removeProduct" method="POST")
+                  input(type="hidden" name="_method" value="DELETE")
+                  input(type="hidden" name="id" value=product._id)
+                  button(type="submit") Delete
+  h2 Orders
+  table(border="1")
+    thead
+      tr
+        th Client
+        th Product
+        th Quantity
+        th Price
+        th Time
+    tbody
+      if orders
+        each order in orders
+          tr
+            td #{order.userId ? order.userId.email : "Unknown user"}
+            td
+              each item in order.products
+                div #{item.name}
+            td
+              each item in order.products
+                div #{item.price}
+            td
+              each item in order.products
+                div #{item.quantity}
+            td #{order.createdAt.toLocaleString()}
+
+  form(action="/logout" method="POST")
+    input(type="hidden" name="_method" value="DELETE")
+    button(type="submit") Logout

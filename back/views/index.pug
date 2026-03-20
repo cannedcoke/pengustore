@@ -1,8 +1,8 @@
 doctype html
 html
   head
-    title = log in
-    link(rel="stylesheet", href="../static")
+    title  log in
+    link(rel="stylesheet", href="../static/css/login.css")
 
   body
     section.login-container 
@@ -10,9 +10,10 @@ html
             h1 Log in
             form(action="/login" method="POST")
                 div 
-                    label(for="email")
+                    label(for="email") email 
                     input(type="email" id="email" name="email" required)
                 div
-                    label(for="password")
+                    label(for="password") password 
                     input(type="password" id="password" name="password" required)
                 button(type="submit") Log in
+
