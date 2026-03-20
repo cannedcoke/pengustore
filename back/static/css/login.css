@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #daeef8;
+  --surface: #f0f8fd;
+  --text: #1a3a50;
+  --text-muted: #5a8aa8;
+  --border: #b0d8ee;
+  --accent: #1a7ab5;
+  --accent-hover: #125f8e;
+  --input-bg: #eaf5fc;
+  --shadow: 0 2px 16px rgba(30,90,140,0.08);
+  --radius: 4px;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+}
+
+.login-card h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--text);
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+input[type="email"],
+input[type="password"] {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(26,122,181,0.1);
+}
+
+button[type="submit"] {
+  width: 100%;
+  margin-top: 0.75rem;
+  padding: 0.85rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button[type="submit"]:hover {
+  background: var(--accent-hover);
+}
+
+p {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+p a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
