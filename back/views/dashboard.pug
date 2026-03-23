@@ -48,31 +48,35 @@ html
                   input(type="hidden" name="_method" value="DELETE")
                   input(type="hidden" name="id" value=product._id)
                   button(type="submit") Delete
-  h2 Orders
-  table(border="1")
-    thead
-      tr
-        th Client
-        th Product
-        th Quantity
-        th Price
-        th Time
-    tbody
-      if orders
-        each order in orders
-          tr
-            td #{order.userId ? order.userId.email : "Unknown user"}
-            td
-              each item in order.products
-                div #{item.name}
-            td
-              each item in order.products
-                div #{item.price}
-            td
-              each item in order.products
-                div #{item.quantity}
-            td #{order.createdAt.toLocaleString()}
+h2 Orders
+table(border="1")
+  thead
+    tr
+      th Client
+      th Adress
+      th Product
+      th Quantity
+      th Price
+      th Total
+      th Time
+  tbody
+    if orders
+      each order in orders
+        tr
+          td #{order.email}
+          td #{order.address}
+          td
+            each item in order.products
+              div #{item.name}
+          td
+            each item in order.products
+              div #{item.quantity}
+          td
+            each item in order.products
+              div ❄️#{item.price}
+          td ❄️#{order.products.reduce((sum, item) => sum + item.price * item.quantity, 0)}
+          td #{order.createdAt.toLocaleString()}
 
-  form(action="/logout" method="POST")
-    input(type="hidden" name="_method" value="DELETE")
-    button(type="submit") Logout
+form(action="/logout" method="POST")
+  input(type="hidden" name="_method" value="DELETE")
+  button(type="submit") Logout
