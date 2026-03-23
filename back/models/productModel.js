@@ -14,10 +14,7 @@ const productSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    image: { 
-        type: String,
-        default: ''
-    }
+    active: { type: Boolean, default: true }
     
 });
 
