@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Pengu Store
+    link(rel="stylesheet", href="/static/css/store.css")
+  body
+    h1 Pengu Store
+    h2 Products
+    .product-grid
+      if products
+        each product in products
+          .product-card
+            .product-name #{product.name}
+            .product-price ❄️#{product.price}
+            .product-stock #{product.stock} in stock
+            form(action="/addToCart" method="POST")
+              input(type="hidden" name="id" value=product._id)
+              button(type="submit") Add to Cart
+
+    if cart && cart.length
+      h2 Cart
+      .cart
+        each item in cart
+          .cart-item
+            span #{item.name}
+            span qty: #{item.quantity}
+            span ❄️#{item.price} each
+            span total: ❄️#{item.price * item.quantity}
+        .cart-total Total: ❄️#{total}
+        form.cart-checkout(action="/checkout" method="POST")
+          input(type="email" name="email" placeholder="your email" required)
+          input(type="address" name="address" placeholder="delivery address" required)
+          button(type="submit") Checkout
