@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Serif+Display&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #daeef8;
+  --surface: #f0f8fd;
+  --surface-hover: #e2f2fa;
+  --text: #1a3a50;
+  --text-muted: #5a8aa8;
+  --border: #b0d8ee;
+  --accent: #1a7ab5;
+  --accent-hover: #125f8e;
+  --input-bg: #eaf5fc;
+  --radius: 4px;
+  --shadow: 0 2px 16px rgba(30,90,140,0.08);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  padding: 2.5rem 2rem;
+  min-height: 100vh;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  text-align: center;
+}
+
+h2 {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.product-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: background 0.2s;
+}
+
+.product-card:hover {
+  background: var(--surface-hover);
+}
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.product-price {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.product-stock {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+}
+
+.product-card form {
+  margin-top: auto;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.55rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+button[type="submit"]:hover {
+  background: var(--accent-hover);
+}
+/* Cart */
+.cart {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+
+.cart-item:last-child { border-bottom: none; }
+
+.cart-item span:first-child { font-weight: 500; color: var(--text); }
+.cart-item span:nth-child(2) { color: var(--text-muted); font-size: 0.8rem; }
+.cart-item span:nth-child(3) { color: var(--text-muted); font-size: 0.8rem; }
+.cart-item span:nth-child(4) { color: var(--accent); font-weight: 500; }
+
+.cart-checkout {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.cart-checkout input[type="email"] {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.cart-checkout input[type="address"] {
+  flex: 1;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.85rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.cart-checkout input[type="email"]:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(26,122,181,0.1);
+}
+
+.cart-checkout button {
+  width: auto;
+  padding: 0.6rem 1.5rem;
+  flex-shrink: 0;
+}
