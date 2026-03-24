@@ -1,18 +1,10 @@
 const Session = require("../models/sessionModel")
-
-// const session = await Session.findOne({ sessionId: req.cookies.session_id })
-//     .populate("userId") // joins the User doc if you need it
-
-// if (!session) return res.status(401).json({ error: "Invalid session" })
-
-
+// funcion de autenticacion a travez de cookies
 async function authenticate(req, res, next) {
 
-  // esta seccion valida por medio de la cookie y crsf
   const sessionId = req.cookies?.session_id
   if (sessionId) {
     
-
     const session = await Session.findOne({ sessionId: req.cookies.session_id })
     if (!session){
        return res.status(401).json({ error: "Invalid session" });

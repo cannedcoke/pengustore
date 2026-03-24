@@ -1,6 +1,5 @@
-// models/Session.js
 const mongoose = require("mongoose")
-
+// esquema par las sessiones con cookies
 const sessionSchema = new mongoose.Schema({
     sessionId: {
         type: String,

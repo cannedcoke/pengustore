@@ -1,10 +1,11 @@
+// obtengo modelos y dependencias
 const User = require("../models/userModel")
-const Product = require("../models/productModel")
 const bcrypt = require("bcrypt")
 const crypto = require("crypto");
 const Session = require("../models/sessionModel")
 
-
+// esta funcion se encarga de cersiorarse de que el usuario tenga las credenciales adecuadas y de
+// proporcionar una cookie 
 exports.login = async (req,res) => {
     const {email,password} = req.body
     
@@ -22,13 +23,13 @@ exports.login = async (req,res) => {
 
         const sessionId = crypto.randomUUID()
         const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
-
+    //generacion de session
         await Session.create({
             sessionId,
             userId:findUser._id,
             expiresAt
         })
-
+    // cookie
         res.cookie("session_id",sessionId, {
             httpOnly:true,
             secure: true, 
