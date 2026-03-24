@@ -1,4 +1,4 @@
-# 🐧 Pengustore
+# Pengustore
 
 A full-stack e-commerce application built with Node.js, Express, MongoDB, and Pug. The project is split into two separate servers — an admin dashboard and a customer-facing store.
 
