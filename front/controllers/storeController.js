@@ -1,7 +1,7 @@
-const User = require("../models/userModel")
 const Order = require("../models/orderModel")
 const Product = require("../models/productModel")
 
+// funcion para pupular lso compos
 exports.populate = async (req, res) => {
   const products = await Product.find({ active: true }) 
   const cart = req.session.cart || []
@@ -9,7 +9,7 @@ exports.populate = async (req, res) => {
   return res.render("store", { products, cart, total })
 }
 
-
+// funcion para agregar articulos al carrito
 exports.addToCart = async (req, res) => {
   const { id } = req.body
   const cart = req.session.cart || []
@@ -19,7 +19,7 @@ exports.addToCart = async (req, res) => {
   const currentQty = existing ? existing.quantity : 0
 
   if (currentQty >= product.stock) {
-    return res.redirect("/") // or send an error message
+    return res.redirect("/") 
   }
 
   if (existing) {
@@ -32,12 +32,13 @@ exports.addToCart = async (req, res) => {
   res.redirect("/")
 }
 
+//funcion para fincalizar el pedido
 exports.checkout = async (req, res) => {
   const { email, address } = req.body
   const cart = req.session.cart || []
   if (!cart.length) return res.redirect("/")
 
-  // verify stock before creating order
+  // verifico el stock antes de crear el pedido
   for (const item of cart) {
     const product = await Product.findById(item.id)
     if (product.stock < item.quantity) {
@@ -53,7 +54,7 @@ exports.checkout = async (req, res) => {
       active: newStock > 0
     })
   }
-
+// crea la orden
   await Order.create({
     email,
     address,
@@ -64,7 +65,7 @@ exports.checkout = async (req, res) => {
       quantity: item.quantity
     }))
   })
-
+// obtiene los datos del carrito guardados en la sesion
   req.session.cart = []
   res.redirect("/")
 }

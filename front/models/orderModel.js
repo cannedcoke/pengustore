@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
-// orderModel.js
+// esquema para las ordenes .
+// estos esuqemas me permiten aggregar mas rigidez
 const orderSchema = new mongoose.Schema(
   {
     userId: {
