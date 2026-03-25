@@ -1,9 +1,9 @@
 # Pengustore
 
+# 🐧 Pengustore
 A full-stack e-commerce application built with Node.js, Express, MongoDB, and Pug. The project is split into two separate servers — an admin dashboard and a customer-facing store.
 
 ## Structure
-
 ```
 pengustore/
   back/    → admin dashboard server (port 5000)
@@ -13,10 +13,10 @@ pengustore/
 ## Features
 
 ### Admin Dashboard (`/back`)
-- Login with session-based authentication and CSRF protection
-- Add, update, and deactivate products
-- View all orders with customer email, delivery address, products, and total
-- Products are never deleted — they are set to active/inactive
+- Login with session-based authentication (cookie + session stored in MongoDB)
+- Add, update, and delete products
+- View all orders with customer email, delivery address, products, quantities, and total
+- Products can be toggled active/inactive via the `active` field
 
 ### Customer Store (`/front`)
 - Browse active products
@@ -28,17 +28,17 @@ pengustore/
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Server | Node.js + Express |
-| Database | MongoDB + Mongoose |
-| Templates | Pug |
-| Auth | Session cookies + CSRF |
-| Styling | CSS with arctic theme |
+| Layer      | Technology                         |
+|------------|------------------------------------|
+| Server     | Node.js + Express                  |
+| Database   | MongoDB + Mongoose                 |
+| Templates  | Pug                                |
+| Auth       | Session cookies (httpOnly, secure) |
+| Styling    | CSS with arctic theme              |
 
 ## Models
 
-**User** — email, password, role
+**User** — email, password
 
 **Product** — name, price, stock, active
 
@@ -66,28 +66,3 @@ npm install
 npm run dev
 ```
 
-### Environment variables
-Create a `.env` file in both `back/` and `front/`:
-```
-MONGO_URI=mongodb://127.0.0.1:27017/pengustore
-SESSION_SECRET=your-secret-here
-```
-
-## API Routes
-
-### Dashboard (`back`)
-```
-POST   /login
-DELETE /logout
-GET    /dashboard
-POST   /dashboard/addProduct
-PUT    /dashboard/updateProduct
-DELETE /dashboard/removeProduct
-```
-
-### Store (`front`)
-```
-GET    /              → browse products
-POST   /addToCart     → add item to session cart
-POST   /checkout      → create order and clear cart
-```
